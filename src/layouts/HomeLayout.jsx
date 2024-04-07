@@ -72,7 +72,7 @@ const HomeLayout=({children})=>{
                     <Link to={"/contact"}>Contact Us</Link>
                 </li>
                 <li>
-                    <Link to={"/course"}>All Course</Link>
+                    <Link to={"/courses"}>All Course</Link>
                 </li>
                 {
                     !isLoggedIn?(
