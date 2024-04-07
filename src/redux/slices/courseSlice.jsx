@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import toast from "react-hot-toast"
 
@@ -39,6 +40,7 @@ const courseSlice=createSlice({
         builder.addCase(getAllCourses.fulfilled,(state,action)=>{
             console.log(action.payload)
             if(action?.payload){
+               
                 state.courseList=[...action?.payload];
             }
         })

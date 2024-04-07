@@ -3,6 +3,7 @@ import './App.css'
 
 import { Route,Routes } from 'react-router-dom';
 
+import CourseDescription from './components/CourseDescription.jsx';
 import Aboutus from './pages/Aboutus.jsx';
 import Contact from './pages/Contact.jsx';
 import CourseList from './pages/Course/CourseList.jsx';
@@ -25,6 +26,7 @@ function App() {
       <Route path='*' element={<NotFound/>}/>
       <Route path='/signup' element={<SignUp/>} />
       <Route path='/signin' element={<SignIn/>}/>
+      <Route path='/course/description' element={<CourseDescription/>}/>
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/denied' element={<Denied/>}/>
       <Route path='/courses' element={<CourseList/>}/>
