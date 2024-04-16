@@ -14,6 +14,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound.jsx';
 import SignIn from './pages/SignIn.jsx';
 import SignUp from './pages/SignUp.jsx';
+import EditProfile from './pages/User/EditProfile.jsx';
 import Profile from './pages/User/Profile.jsx';
 
 
@@ -35,6 +36,7 @@ function App() {
       </Route>
       <Route element={<RequireAuth allowedRoles={["ADMIN",'USER']} />}>
         <Route path='/user/profile' element={<Profile/>}/>
+        <Route path='/user/editprofile' element={<EditProfile/>}/>
       </Route>
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/denied' element={<Denied/>}/>
