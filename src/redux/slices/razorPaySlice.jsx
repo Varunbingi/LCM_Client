@@ -13,7 +13,7 @@ const initialState={
 }
 export const getRazorPayId=createAsyncThunk('/razorpay/getId',async()=>{
     try{
-        const response=await axiosInstance.get('/paymets/razorpay-key')
+        const response=await axiosInstance.get('/payments/razorpay-key')
         return response.data
     }
     catch(e){
@@ -22,7 +22,7 @@ export const getRazorPayId=createAsyncThunk('/razorpay/getId',async()=>{
 })
 export const parchaseCourseBundle=createAsyncThunk('/parchasecourse',async()=>{
     try{
-        const response=await axiosInstance.post('/paymets/subscribe')
+        const response=await axiosInstance.post('/payments/subscribe')
         return response.data
     }
     catch(e){
@@ -52,7 +52,7 @@ export const verifyUserPayment=createAsyncThunk('/payments/verify',async(data)=>
             razorpay_subscription_id:data.razorpay_subscription_id,
             razorpay_signture:data.razorpay_signture,
         });
-        return response.data;
+        return response;
     }
     catch(e){
         toast.error(e?.response?.data?.message)

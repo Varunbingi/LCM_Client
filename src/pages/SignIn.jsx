@@ -53,7 +53,7 @@ const SignIn=()=>{
     return (
         <HomeLayout>
             <div className="flex overflow-x-auto items-center justify-center h-[100vh] ">
-                <form onSubmit={onFormSubmit} noValidate className="flex flex-col rounded-lg justify-center gap-3 p-4 text-white">
+                <form onSubmit={onFormSubmit} noValidate className="flex flex-col rounded-lg justify-center gap-3 p-10 text-white shadow-[0_0_10px_black] ">
                     <h1 className="text-2xl text-center font-bold">
                         Login page
                     </h1>
