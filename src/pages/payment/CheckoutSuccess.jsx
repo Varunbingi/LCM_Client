@@ -1,9 +1,16 @@
+import { useEffect } from "react"
 import { AiFillCheckCircle } from "react-icons/ai"
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 
 import HomeLayout from "../../layouts/HomeLayout"
+import { getUserData } from "../../redux/slices/authSlice"
 
 const CheckoutSucess=()=>{
+    const dispatch=useDispatch();
+    useEffect(()=>{
+        dispatch(getUserData)
+    },[])
     return(
         <HomeLayout>
             <div className="min-h-[90vh] flex items-center justify-center text-white">
@@ -11,7 +18,7 @@ const CheckoutSucess=()=>{
                     <h1 className="bg-green-500 absolute text-center top-0 w-full text-2xl font-bold rounded-tr-lg rounded-tl-lg p-2">Payment Successfull</h1>
                     <div className="px-4 flex flex-col items-center justify-center space-y-2">
                         <h2 className="text-lg font-semibold">
-                            Welocome to pro bundle
+                            Wellcome to pro bundle
                         </h2>
                         <p className="text-left">
                             Now enjoy all the premium content

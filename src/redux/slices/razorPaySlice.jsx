@@ -31,7 +31,7 @@ export const parchaseCourseBundle=createAsyncThunk('/parchasecourse',async()=>{
 })
 export const cancleCourseBundle=createAsyncThunk('/payments/cancel',async()=>{
     try{
-        const response=await axiosInstance.post('/paymets/unsubscribe')
+        const response=await axiosInstance.post('/payments/unsubscribe')
         toast.promise(response,{
             loading:"Unsubscribing the bundle",
             success:(data)=>{
@@ -39,28 +39,30 @@ export const cancleCourseBundle=createAsyncThunk('/payments/cancel',async()=>{
             },
             error:"Failed to unsubscribe "
              })
-        return response.data
+        return (await response).data
     }
     catch(e){
         toast.error(e?.response?.data?.message)
     }
 })
-export const verifyUserPayment=createAsyncThunk('/payments/verify',async(data)=>{
-    try{
-        const response=await axiosInstance.post('/payments/verify',{
-            razorpay_payment_id:data.razorpay_payment_id,
-            razorpay_subscription_id:data.razorpay_subscription_id,
-            razorpay_signture:data.razorpay_signture,
+export const verifyUserPayment = createAsyncThunk("/payments/verify", async (data) => {
+    try {
+        const response = await axiosInstance.post("payments/verify", {
+            razorpay_payment_id: data.razorpay_payment_id,
+            razorpay_subscription_id: data.razorpay_subscription_id,
+            razorpay_signature: data.razorpay_signature
         });
-        return response;
+        return response.data;
+    } catch(error) {
+        console.error("Error occurred while verifying user payment:", error); // Log the error for debugging
+        toast.error("An error occurred while verifying payment. Please try again later.");
+        throw error; // Rethrow the error to propagate it upwards if needed
     }
-    catch(e){
-        toast.error(e?.response?.data?.message)
-    }
-})
-export const getPaymentRecord=createAsyncThunk('/payment/record',async()=>{
+});
+
+export const getPaymentRecord=createAsyncThunk('/payments/record',async()=>{
     try{
-        const response=axiosInstance.get('/paymets?count=100')
+        const response=axiosInstance.get('/payments?count=100')
         toast.promise(response,{
             loading:"Getting the paymet record ",
             success:(data)=>{
@@ -83,9 +85,15 @@ const razorPaySlice=createSlice({
             state.key=action?.payload?.key;
         }).addCase(parchaseCourseBundle.fulfilled,(state,action)=>{
             state.subscription_id=action?.payload?.subscription_id;
-        }).addCase(verifyUserPayment.fulfilled,(state,action)=>{
-            toast.error(action?.payload?.message)
-            state.isPaymentVerified=action?.payload?.success;
+        })   .addCase(verifyUserPayment.fulfilled, (state, action) => {
+            console.log(action);
+            toast.success(action?.payload?.message);
+            state.isPaymentVerified = action?.payload?.success;
+        })
+        .addCase(verifyUserPayment.rejected, (state, action) => {
+            console.log(action);
+            toast.success(action?.payload?.message);
+            state.isPaymentVerified = action?.payload?.success;
         }).addCase(getPaymentRecord.fulfilled,(state,action)=>{
             state.allPayments=action?.payload?.allPayments;
             state.finalMonths=action?.payload?.finalMonths;
