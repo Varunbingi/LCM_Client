@@ -6,7 +6,7 @@ import HomeLayout from "../layouts/HomeLayout.jsx";
 const Home=()=>{
     return(
         <HomeLayout>
-            <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[90vh]">
+            <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[100vh]">
                 <div className="w-1/2 space-y-6">
                     <h1 className="text-5xl font-semibold">Find out beast <span className="text-yellow-500">Online Cousre</span></h1>
                     <p>
