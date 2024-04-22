@@ -98,6 +98,26 @@ export const getUserData=createAsyncThunk('/auth/getData',async ()=>{
         toast.error(error?.message)
     }
 })
+export const updatePassword=createAsyncThunk('/auth/changePassword',async(data)=>{
+    try{
+        const response=axiosInstance.post('/user/change-password',data);
+        toast.promise(response,{
+            loading:"wait updating your password",
+            success:(data)=>{
+                return data?.data?.message;
+            },
+            error:  "Filed to Update your password!"
+    
+        });
+        return ((await response).data); 
+    }
+    catch(error){
+        
+        toast.error(error?.response?.data?.message)
+    }
+        
+    
+})
 
 const authSlice=createSlice({
     name:"auth",
@@ -106,8 +126,9 @@ const authSlice=createSlice({
     extraReducers:(builder)=>{
 
         builder.addCase(login.fulfilled,(state,action)=>{
-        
-            localStorage.setItem("data",JSON.stringify(action?.payload?.data));
+            console.log(action);
+            console.log(state)
+            localStorage.setItem("data",JSON.stringify(action?.payload?.data?.user));
             localStorage.setItem("isLoggedIn",true);
             localStorage.setItem("role",action?.payload?.data?.user?.role);
             state.isLoggedIn=true;
@@ -127,6 +148,17 @@ const authSlice=createSlice({
             state.isLoggedIn = true;
             state.role = action?.payload?.user?.role;
             state.data = action?.payload?.user;
+        }).addCase(updatePassword.fulfilled,(state,action)=>{
+            console.log(JSON.stringify(state))
+            console.log(action);
+            if (!action?.payload?.user) return;
+            localStorage.setItem("data", JSON.stringify(action?.payload?.user));
+            localStorage.setItem("isLoggedIn", true);
+            localStorage.setItem("role", action?.payload?.user?.role);
+            state.isLoggedIn = true;
+            state.role = action?.payload?.user?.role;
+            state.data = action?.payload?.user;
+            
         })
         
     }
