@@ -8,7 +8,7 @@ const CourseCard=({data})=>{
             <div className='overflow-hidden'>
                 <img alt='course thumbnail' src={data?.thumbnail?.secure_url} className='h-48 w-full rounded-tl-lg group:hover:scale=[1,2] transition-all ease-in-out duration-300 '/>
             </div>
-            <div className='p=3 space-y-1 text-white'>
+            <div className='p-3 space-y-1 text-white'>
                 <h2 className='text-xl font-bold line-clamp-2 text-yellow-500'>{data?.title}</h2>
                 <p className='line-clamp-2'>{data?.description}</p>
                 <p className='font-semibold'>Category :<span className='font-bold text-yellow-500'>{data?.category}</span></p>

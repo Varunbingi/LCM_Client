@@ -65,14 +65,14 @@ const CreateCourse=()=>{
     }
     return(
         <HomeLayout>
-            <div className="h-[100vh] flex items-center justify-center">
-                <form onSubmit={onFormSubmit} className="flex flex-col justify-center gap-10 rounded-lg p-4 text-white w-[700px]
-                h-[80vh] my-10 shadow-[0_0_10px_black]  relative ">
-                    <Link onClick={()=>navigate(-1)} className="absolute top-8 cursor-pointer text-2xl link text-accent">
+            <div className="min-h-[90vh] md:h-[90vh] flex items-center pt-10 justify-center">
+                <form onSubmit={onFormSubmit} className="flex flex-col justify-center gap-10 rounded-lg p-4 text-white md:w-[700px] w-4/5
+                md:h-[80vh]  my-10 shadow-[0_0_10px_black]  relative ">
+                    <Link onClick={()=>navigate(-1)} className="absolute top-5 cursor-pointer text-2xl link text-accent">
                     <AiOutlineArrowLeft/>
                     </Link>
-                    <h1 className="text-center text-2xl font-bold">Create New Course</h1>
-                    <main className="grid grid-cols-2 gap-x-10">
+                    <h1 className="text-center text-2xl font-bold ">Create New Course</h1>
+                    <main className="grid md:grid-cols-2 gap-x-10 gap-y-3">
                         <div className="gap-y-6">
                             <div>
                                 <label htmlFor="image_uploads" className="cursor-pointer">

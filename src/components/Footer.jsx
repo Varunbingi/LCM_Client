@@ -9,7 +9,7 @@ const Footer=()=>{
                 <section>
                     Copyright {year} | All rights reserved
                 </section>
-                <section className="flex items-center justify-center gap-5 text-2xl text-white">
+                <section className="flex items-center justify-center gap-5 md:text-2xl text-white">
                     <a href="#" className="hover:text-blue-600 transition-all ease-in-out duration-300">
                         <BsFacebook/>
                     </a>

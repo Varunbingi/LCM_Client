@@ -81,7 +81,7 @@ const SignUp=()=>{
     return (
         <HomeLayout>
             <div className="flex overflow-x-auto items-center justify-center h-[100vh] ">
-                <form onSubmit={onFormSubmit} noValidate className="flex flex-col rounded-lg justify-center gap-3 p-4 text-white">
+                <form onSubmit={onFormSubmit} noValidate className="flex flex-col rounded-lg  shadow-[0_0_10px_black]  justify-center gap-3 p-10 text-white">
                     <h1 className="text-2xl text-center font-bold">
                         Registration page
                     </h1>
@@ -121,7 +121,7 @@ const SignUp=()=>{
                         Create account
                     </button>
                     <p className="text-center">
-                        Already have an acoount? <Link to={"/login"} className="cursor-pointer text-accent">Login</Link>
+                        Already have an acoount? <Link to={"/signin"} className="cursor-pointer text-accent">Login</Link>
                     </p>
                 </form>
             </div>

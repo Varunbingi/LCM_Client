@@ -24,13 +24,13 @@ const DisplayLectures=()=>{
     },[])
     return(
         <HomeLayout>
-            <div className="flex flex-col gap-10 justify-center min-h-[90vh] py-10 text-white ">
+            <div className="flex flex-col gap-10 justify-center min-h-[90vh] lg:p-10  py-10 text-white ">
                 <div className="text-center text-2xl font-semibold text-yellow-500">
                     Course Name:{state?.title}
                 </div>
                 {lectures && lectures.length >0 ?(
-                    <div className="flex justify-center gap-10 w-full">
-                    <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
+                    <div className="flex lg:flex-row flex-col  justify-center  items-center  lg:items-stretch gap-10 w-full">
+                    <div className="space-y-5 lg:w-[28rem] w-4/5 p-2 rounded-lg shadow-[0_0_10px_black]">
                         <video src={lectures[currentVideo]?.lecture?.secure_url}
                         className="object-fill rounded-tl-lg w-full rounded-tr-lg" controls disablePictureInPicture controlsList="nodownload" muted/>
                         <h1>
@@ -46,7 +46,7 @@ const DisplayLectures=()=>{
                             {lectures[currentVideo]?.description}
                         </p>
                     </div>
-                    <ul className="w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black] space-y-5">
+                    <ul className="lg:w-[28rem] w-4/5 p-2 rounded-lg shadow-[0_0_10px_black] space-y-5">
                     <li className="font-semibold text-xl text-yellow-500 flex items-center justify-between">
                             <p>Lectures list</p>
                             {role === "ADMIN" && (
