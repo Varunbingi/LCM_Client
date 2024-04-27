@@ -12,6 +12,7 @@ import CreateCourse from './pages/Course/CreateCourse.jsx';
 import AddLecture from './pages/Dashboard/AddLecture.jsx';
 import DisplayLectures from './pages/Dashboard/DisplayLectures.jsx';
 import Denied from './pages/Denied.jsx';
+import ForgotPassword from './pages/ForgotPassword.jsx';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound.jsx';
 import Checkout from './pages/payment/Checkout.jsx';
@@ -53,6 +54,7 @@ function App() {
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/denied' element={<Denied/>}/>
       <Route path='/courses' element={<CourseList/>}/>
+      <Route path='/reset' element={<ForgotPassword/>}/>
     </Routes>
   
   )

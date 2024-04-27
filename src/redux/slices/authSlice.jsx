@@ -47,6 +47,25 @@ export const login=createAsyncThunk('/auth/signin',async (data)=>{
         toast.error(error?.response?.data?.message)
     }
 })
+export const forgotPassword=createAsyncThunk('/auth/forgotPassword',async (data)=>{
+    try{
+        const response= axiosInstance.post('user/reset',data);
+        
+        toast.promise(response,{
+            loading:"wait sending message to mail",
+            success:(data)=>{
+                return data?.data?.message;
+            },
+            error:  "Failed To Send Mail!"
+    
+        });
+        return await response; 
+    }
+    catch(error){
+        
+        toast.error(error?.response?.data?.message)
+    }
+})
 export const logout=createAsyncThunk('/auth/logout',async (data)=>{
     try{
         const response= axiosInstance.post('user/logout',data);
@@ -159,6 +178,14 @@ const authSlice=createSlice({
             state.role = action?.payload?.user?.role;
             state.data = action?.payload?.user;
             
+        }).addCase(forgotPassword.fulfilled,(state,action)=>{
+            if (!action?.payload?.user) return;
+            localStorage.setItem("data", JSON.stringify(action?.payload?.user));
+            localStorage.setItem("isLoggedIn", true);
+            localStorage.setItem("role", action?.payload?.user?.role);
+            state.isLoggedIn = true;
+            state.role = action?.payload?.user?.role;
+            state.data = action?.payload?.user;
         })
         
     }

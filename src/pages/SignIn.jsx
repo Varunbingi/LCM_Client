@@ -76,6 +76,7 @@ const SignIn=()=>{
                     <button className="mt-2 bg-yellow-800 hover:bg-yellow-500 transition-all duration-300 ease-in-out cursor-pointer px-2 py-1">
                         Sign In
                     </button>
+                    <Link to={"/reset"}><p className="text-right text-accent">forgot password ?</p></Link>
                     <p className="text-center">
                         Donot have an acoount? <Link to={"/signup"} className="cursor-pointer text-accent">Sign up</Link>
                     </p>
