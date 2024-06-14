@@ -1,11 +1,17 @@
-import { Link } from "react-router-dom";
+
+import { Link} from "react-router-dom";
 
 import HomePageImage from "../assets/HomePageImage.png"
 import HomeLayout from "../layouts/HomeLayout.jsx";
 
+
 const Home=()=>{
+  
+    
+
     return(
         <HomeLayout>
+            
             <div className="pt-10 text-white flex flex-col-reverse md:flex-row items-center justify-center gap-10 mx-16 min-h-[90vh] pb-10">
                 <div className="md:w-1/2 md:space-y-6 space-y-3">
                     <h1 className="md:text-5xl  text-3xl font-semibold">Find out best <span className="text-yellow-500">Online Cousres</span></h1>
@@ -30,6 +36,7 @@ const Home=()=>{
                 </div>
 
             </div>
+            
         </HomeLayout>
     )
 }

@@ -11,6 +11,7 @@ const CourseList=()=>{
     const loadCourses=()=>{
         dispatch(getAllCourses())
     }
+
     const {courseList}=useSelector((state)=>state.course)
     useEffect(()=>{loadCourses()},[])
     return(

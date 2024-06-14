@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 import {AiFillCloseCircle} from "react-icons/ai"
 import {FiMenu} from "react-icons/fi"
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +11,7 @@ const HomeLayout=({children})=>{
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const isLoggedIn=useSelector((state)=>state?.auth?.isLoggedIn);
+    const token=useSelector(state=>state?.auth?.token);
     const role=useSelector((state)=>state?.auth?.role);
     const onLogout=async(e)=>{
         e.preventDefault();
@@ -19,7 +22,33 @@ const HomeLayout=({children})=>{
         
 
         
-    }
+    } 
+    const autoLogout=async()=>{
+        
+        const response=await dispatch(logout());
+        
+        if(response?.payload?.data){
+            toast("Token expried, please login again")
+            navigate('/')
+        }
+           
+        
+
+        
+    } 
+    
+    useEffect(() => {
+        if (token) {
+            const LOGIN_DURATION = 24*60* 60 * 1000; 
+
+            const logoutTimer = setTimeout(() => {
+                autoLogout();
+            }, LOGIN_DURATION);
+
+            // Cleanup timeout if token changes or component unmounts
+            return () => clearTimeout(logoutTimer);
+        }
+    }, [token]);
     const changeWidth=()=>{
         const drawerSide=document.getElementsByClassName("drawer-side");
         

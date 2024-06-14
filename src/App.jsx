@@ -1,6 +1,7 @@
 
 import './App.css'
 
+import { Provider } from 'react-redux';
 import { Route,Routes } from 'react-router-dom';
 
 import RequireAuth from './components/Auth/RequireAuth.jsx';
@@ -23,6 +24,7 @@ import SignUp from './pages/SignUp.jsx';
 import ChangePassword from './pages/User/ChangePassword.jsx';
 import EditProfile from './pages/User/EditProfile.jsx';
 import Profile from './pages/User/Profile.jsx';
+import store from './redux/store.jsx';
 
 
 
@@ -31,6 +33,7 @@ function App() {
   
 
   return (
+    <Provider store={store}>
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/about' element={<Aboutus/>}/>
@@ -43,6 +46,7 @@ function App() {
       </Route>
       <Route element={<RequireAuth allowedRoles={["ADMIN",'USER']} />}>
         <Route path='/user/profile' element={<Profile/>}/>
+        <Route path='/courses' element={<CourseList/>}/>
         <Route path='/user/editprofile' element={<EditProfile/>}/>
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='/checkout/success' element={<CheckoutSucess/>}/>
@@ -53,9 +57,10 @@ function App() {
       <Route path='/changepassword' element={<ChangePassword/>}/>
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/denied' element={<Denied/>}/>
-      <Route path='/courses' element={<CourseList/>}/>
+      
       <Route path='/reset' element={<ForgotPassword/>}/>
     </Routes>
+    </Provider>
   
   )
 }
