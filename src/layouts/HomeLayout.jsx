@@ -23,7 +23,7 @@ const HomeLayout=({children})=>{
 
         
     } 
-    const autoLogout=async()=>{
+    const autoLogout=async ()=>{
         
         const response=await dispatch(logout());
         
@@ -116,7 +116,7 @@ const HomeLayout=({children})=>{
                     !isLoggedIn?(
                         <li className="absolute bottom-4 w-[90%]">
                             <div className="w-full flex items-center justify-center">
-                                <button className="bg-violet-700       px-4 py-1 font-semibold rounded-md w-full  text-white">
+                                <button className="bg-violet-700 px-4 py-1 font-semibold rounded-md w-full  text-white">
                                     <Link to={"/signin"}>
                                         SignIn
                                     </Link>
