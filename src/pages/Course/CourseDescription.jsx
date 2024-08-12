@@ -5,7 +5,7 @@ import HomeLayout from '../../layouts/HomeLayout';
 const CourseDescription=()=>{
     const {state}=useLocation();
     const navigate=useNavigate();
-    const {role,data}=useSelector((state)=>state.auth)
+    const {role,data}=useSelector((state)=>state.auth);
     return(
         <HomeLayout>
             <div className='min-h-[90vh]   md:px-20 py-16 flex flex-col  items-center justify-center text-white'>

@@ -3,15 +3,15 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import toast from "react-hot-toast"
 
 import axiosInstance from "../../config/axiosInstance"
-
 const initialState={
     courseList:[]
 }
 
+
+
 export const getAllCourses=createAsyncThunk('/courses/getAllCourses',async (data)=>{
     try{
-        const response= axiosInstance.get('courses/',data);
-        
+        const response= axiosInstance.get('/courses',data);
         toast.promise(response,{
             loading:"wait! fetching all courses",
             success:(data)=>{
@@ -40,7 +40,7 @@ export const createNewCourse=createAsyncThunk('/course/create',async (data)=>{
         formData.append("createdBy",data?.createdBy);
         formData.append('thumbnail',data?.thumbnail)
     
-        const response= axiosInstance.post('courses',formData);
+        const response= axiosInstance.post('/courses',formData);
         
         toast.promise(response,{
             loading:"wait! creating new courses",

@@ -12,7 +12,7 @@ const initialState={
 
 export const createAccount=createAsyncThunk('/auth/signup',async (data)=>{
     try{
-        const response= axiosInstance.post('user/register',data);
+        const response= axiosInstance.post('/user/register',data);
         
         toast.promise(response,{
             loading:"wait creating your account",
@@ -31,7 +31,7 @@ export const createAccount=createAsyncThunk('/auth/signup',async (data)=>{
 })
 export const login=createAsyncThunk('/auth/signin',async (data)=>{
     try{
-        const response= axiosInstance.post('user/login',data);
+        const response= axiosInstance.post('/user/login',data);
         
         toast.promise(response,{
             loading:"wait authenticating your account",
@@ -50,7 +50,7 @@ export const login=createAsyncThunk('/auth/signin',async (data)=>{
 })
 export const forgotPassword=createAsyncThunk('/auth/forgotPassword',async (data)=>{
     try{
-        const response= axiosInstance.post('user/reset',data);
+        const response= axiosInstance.post('/user/reset',data);
         
         toast.promise(response,{
             loading:"wait sending message to mail",
@@ -69,7 +69,7 @@ export const forgotPassword=createAsyncThunk('/auth/forgotPassword',async (data)
 })
 export const logout=createAsyncThunk('/auth/logout',async (data)=>{
     try{
-        const response= axiosInstance.post('user/logout',data);
+        const response= axiosInstance.post('/user/logout',data);
         
         toast.promise(response,{
             loading:"wait! logging out your account",
@@ -90,7 +90,7 @@ export const logout=createAsyncThunk('/auth/logout',async (data)=>{
 })
 export const updateProfile=createAsyncThunk('/auth/update/profile',async (data)=>{
     try{
-        const response= axiosInstance.put('user/update',data[1]);
+        const response= axiosInstance.put('/user/update',data[1]);
         
         toast.promise(response,{
             loading:"wait updating your account",
