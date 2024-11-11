@@ -1,13 +1,14 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { isValidPassword } from "../helpers/regexMatcher";
 import { resetPassword } from "../redux/slices/authSlice";
 
 
 const ResetPassword=()=>{
+    const {id}=useParams()
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [data, setData] = useState({
@@ -22,7 +23,7 @@ const ResetPassword=()=>{
             toast.error("Invaild password provided, password should  contain 6 to 16 character long with  one number and one special character");
             return;
         } 
-        await dispatch(resetPassword(data));
+        await dispatch(resetPassword({...data,id}));
         toast.success("Password changed successfully");
         navigate("/");
     }
