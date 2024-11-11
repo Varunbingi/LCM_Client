@@ -138,9 +138,9 @@ export const updatePassword=createAsyncThunk('/auth/changePassword',async(data)=
         
     
 })
-export const resetPassword=createAsyncThunk('/auth/resetPassword',async(data)=>{
+export const resetPassword=createAsyncThunk('/auth/resetPassword',async ({ id, ...data })=>{
     try{
-        const response=await axiosInstance.post('/reset/:id',data);
+        const response=await axiosInstance.post(`/reset/${id}`, data);
         toast.promise(response,{
             loading:"wait reseting the password",
             success:(data)=>{
