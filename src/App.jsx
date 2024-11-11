@@ -19,6 +19,7 @@ import NotFound from './pages/NotFound.jsx';
 import Checkout from './pages/payment/Checkout.jsx';
 import CheckoutFailure from './pages/payment/CheckoutFailure.jsx';
 import CheckoutSucess from './pages/payment/CheckoutSuccess.jsx';
+import ResetPassword from './pages/RestPassword.jsx';
 import SignIn from './pages/SignIn.jsx';
 import SignUp from './pages/SignUp.jsx';
 import ChangePassword from './pages/User/ChangePassword.jsx';
@@ -43,6 +44,7 @@ function App() {
       <Route path='/course/description' element={<CourseDescription/>}/>
       <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
         <Route path='/course/create' element={<CreateCourse/>}/>
+        <Route path='/course/addlecture' element={<AddLecture/>}/>
       </Route>
       <Route element={<RequireAuth allowedRoles={["ADMIN",'USER']} />}>
         <Route path='/user/profile' element={<Profile/>}/>
@@ -52,13 +54,12 @@ function App() {
         <Route path='/checkout/success' element={<CheckoutSucess/>}/>
         <Route path='/checkout/fail' element={<CheckoutFailure/>}/>
         <Route path='/course/displaylectures' element={<DisplayLectures/>}/>
-        <Route path='/course/addlecture' element={<AddLecture/>}/>
       </Route>
       <Route path='/changepassword' element={<ChangePassword/>}/>
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/denied' element={<Denied/>}/>
-      
       <Route path='/reset' element={<ForgotPassword/>}/>
+      <Route path='/reset/:id' element={<ResetPassword/>}/>
     </Routes>
     </Provider>
   

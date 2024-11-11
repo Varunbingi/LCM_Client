@@ -138,6 +138,20 @@ export const updatePassword=createAsyncThunk('/auth/changePassword',async(data)=
         
     
 })
+export const resetPassword=createAsyncThunk('/auth/resetPassword',async(data)=>{
+    try{
+        const response=await axiosInstance.post('/reset/:id',data);
+        toast.promise(response,{
+            loading:"wait reseting the password",
+            success:(data)=>{
+                return data?.data?.message
+            },
+            error:  "Filed to Update your password!"
+        })
+    }catch(error){
+        toast.error(error?.response?.data?.message)
+    }
+})
 
 const authSlice=createSlice({
     name:"auth",
@@ -172,8 +186,6 @@ const authSlice=createSlice({
             state.role = action?.payload?.user?.role;
             state.data = action?.payload?.user;
         }).addCase(updatePassword.fulfilled,(state,action)=>{
-            console.log(JSON.stringify(state))
-            console.log(action);
             if (!action?.payload?.user) return;
             localStorage.setItem("data", JSON.stringify(action?.payload?.user));
             localStorage.setItem("isLoggedIn", true);
@@ -190,6 +202,14 @@ const authSlice=createSlice({
             state.isLoggedIn = true;
             state.role = action?.payload?.user?.role;
             state.data = action?.payload?.user;
+        }).addCase(resetPassword.fulfilled,(state,action)=>{
+            if (!action?.payload?.user) return;
+            localStorage.clear();
+            state.isLoggedIn=false;
+            state.role='';
+            state.data={};
+            state.token='';
+
         })
         
     }
