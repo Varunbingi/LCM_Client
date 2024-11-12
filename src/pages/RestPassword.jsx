@@ -12,18 +12,18 @@ const ResetPassword=()=>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [data, setData] = useState({
-        newPassword: "",
+        password: "",
     });
     const onFormSubmit=async (e)=>{
         e.preventDefault();
-        if(!data.newPassword){
+        if(!data.password){
             toast.error("All fileds are required");
             return;
-        }if(!isValidPassword(data.newPassword)){
+        }if(!isValidPassword(data.password)){
             toast.error("Invaild password provided, password should  contain 6 to 16 character long with  one number and one special character");
             return;
         } 
-        await dispatch(resetPassword({...data,id}));
+        await dispatch(resetPassword({id,...data}));
         toast.success("Password changed successfully");
         navigate("/");
     }
@@ -46,11 +46,11 @@ const ResetPassword=()=>{
                     <label >New Password :</label>
                     <input  required
                         type="password"
-                        name="newPassword"
-                        id="newPassword"
+                        name="password"
+                        id="password"
                         placeholder="Enter new Password"
                         className="bg-transparent px-2 py-1 border"
-                        value={data.newPassword}
+                        value={data.password}
                         onChange={handleInputChange}/>
                     <button type="submit" className="bg-yellow-500 p-2 rounded-md  hover:bg-yellow-600 font-semibold">Submit</button>
                 </form>
